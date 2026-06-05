@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ข่าว AI — BoomBigNose</title>
+<meta name="description" content="รวมข่าวพัฒนาการ AI ที่น่าสนใจ คัดมาให้แล้ว รายงานทุกวัน — ฉบับ BoomBigNose" />
+<meta property="og:title" content="ข่าว AI — BoomBigNose" />
+<meta property="og:description" content="รวมข่าวพัฒนาการ AI ที่น่าสนใจ คัดมาให้แล้ว รายงานทุกวัน — ฉบับ BoomBigNose" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://boombignose.org/news.html" />
+<meta name="theme-color" content="#FF5A36" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800;900&family=Sarabun:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👃</text></svg>" />
+<style>
+  :root{
+    --paper:#FFF6E9;
+    --paper-2:#FFEFD6;
+    --ink:#181410;
+    --coral:#FF5A36;
+    --blue:#2F50FF;
+    --yellow:#FFC93C;
+    --mint:#19C39B;
+    --pink:#FF7FB0;
+    --border:3px solid var(--ink);
+    --shadow:7px 7px 0 var(--ink);
+    --shadow-sm:4px 4px 0 var(--ink);
+    --shadow-lg:11px 11px 0 var(--ink);
+    --radius:18px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Sarabun",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:17px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3,h4,.display{font-family:"Kanit",sans-serif;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  ::selection{background:var(--coral);color:#fff}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:100;
+    background:var(--paper);
+    border-bottom:var(--border);
+  }
+  .nav-in{display:flex;align-items:center;gap:18px;height:70px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:"Kanit";font-weight:800;font-size:20px}
+  .nose{
+    width:42px;height:42px;flex:none;display:grid;place-items:center;
+    background:var(--yellow);border:var(--border);border-radius:50%;box-shadow:var(--shadow-sm);
+    transform:rotate(-6deg);transition:transform .25s ease;
+  }
+  .brand:hover .nose{transform:rotate(8deg) scale(1.06)}
+  .brand small{display:block;font-family:"IBM Plex Mono";font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--coral);line-height:1}
+  .nav-links{margin-left:auto;display:flex;align-items:center;gap:26px}
+  .nav-links a.lnk{font-weight:600;text-decoration:none;font-size:15px;position:relative}
+  .nav-links a.lnk::after{content:"";position:absolute;left:0;bottom:-4px;height:3px;width:0;background:var(--coral);transition:width .2s}
+  .nav-links a.lnk:hover::after,.nav-links a.lnk.active::after{width:100%}
+  .nav-links a.lnk.active{color:var(--coral)}
+  @media(max-width:760px){.nav-links a.lnk{display:none}}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:"Kanit";font-weight:700;font-size:15px;text-decoration:none;
+    padding:11px 20px;border:var(--border);border-radius:999px;
+    background:var(--ink);color:var(--paper);box-shadow:var(--shadow-sm);
+    cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.coral{background:var(--coral);color:#fff}
+  .btn.blue{background:var(--blue);color:#fff}
+  .btn.paper{background:var(--paper);color:var(--ink)}
+  .btn.sm{font-size:13px;padding:8px 16px}
+
+  /* ---------- marquee ---------- */
+  .marquee{background:var(--ink);color:var(--paper);border-bottom:var(--border);overflow:hidden;white-space:nowrap}
+  .marquee .track{display:inline-flex;gap:0;padding:10px 0;animation:scroll 32s linear infinite;will-change:transform}
+  .marquee span{font-family:"Kanit";font-weight:700;font-size:15px;letter-spacing:.04em;padding:0 18px}
+  .marquee span b{color:var(--yellow)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- page hero ---------- */
+  .page-hero{
+    padding:56px 0 48px;border-bottom:var(--border);background:var(--paper-2);
+  }
+  .eyebrow{font-family:"IBM Plex Mono";font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:30px;height:3px;background:var(--coral)}
+  .page-hero h1{font-size:clamp(42px,6vw,72px);font-weight:900;margin:16px 0 12px}
+  .page-hero h1 .hl{position:relative;color:var(--coral)}
+  .page-hero h1 .hl::after{content:"";position:absolute;left:-4px;right:-4px;bottom:6px;height:.32em;background:var(--yellow);z-index:-1;transform:rotate(-.8deg)}
+  .page-hero p.lead{font-size:clamp(16px,2vw,20px);max-width:44ch;color:#5c4f40}
+
+  /* ---------- news content ---------- */
+  .news-section{padding:56px 0;border-bottom:var(--border)}
+  .news-section:last-of-type{border-bottom:none}
+
+  .date-bar{
+    display:inline-flex;align-items:center;gap:14px;margin-bottom:36px;
+  }
+  .date-badge{
+    font-family:"Kanit";font-weight:800;font-size:clamp(22px,3.5vw,32px);
+    background:var(--ink);color:var(--yellow);
+    border:var(--border);border-radius:var(--radius);
+    padding:8px 24px;box-shadow:var(--shadow);
+    display:inline-block;
+  }
+  .date-count{font-family:"IBM Plex Mono";font-size:13px;color:#6f5f4a}
+
+  .news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:24px;
+  }
+  @media(max-width:560px){.news-grid{grid-template-columns:1fr}}
+
+  .news-card{
+    background:#fff;border:var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:26px 24px;
+    display:flex;flex-direction:column;gap:14px;
+    transition:transform .15s ease,box-shadow .15s ease;
+    position:relative;
+  }
+  .news-card:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-lg)}
+
+  .card-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .badge{
+    font-family:"IBM Plex Mono";font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    border:2px solid var(--ink);border-radius:999px;padding:3px 10px;
+  }
+  .badge.cat-model{background:var(--blue);color:#fff}
+  .badge.cat-business{background:var(--yellow);color:var(--ink)}
+  .badge.cat-health{background:var(--mint);color:var(--ink)}
+  .badge.cat-open{background:var(--pink);color:var(--ink)}
+  .badge.cat-robot{background:var(--coral);color:#fff}
+  .badge.src{background:var(--paper-2);color:#4d4234;font-size:10px}
+
+  .news-card h3{font-size:clamp(18px,2.2vw,22px);font-weight:800;line-height:1.2}
+  .news-card p{font-size:15px;color:#4d4234;line-height:1.7;flex:1}
+
+  .card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .card-date{font-family:"IBM Plex Mono";font-size:11px;color:#8a7560}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--paper);padding:54px 0 38px;border-top:var(--border)}
+  .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+  .foot-brand{max-width:30ch}
+  .foot-brand p{font-size:14px;color:#5c4f40;margin-top:12px}
+  .foot-col h5{font-family:"Kanit";font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+  .foot-col a{display:block;text-decoration:none;font-size:15px;margin-bottom:8px;color:#4d4234}
+  .foot-col a:hover{color:var(--coral)}
+  .foot-bot{margin-top:42px;padding-top:22px;border-top:var(--border);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#6f5f4a;font-family:"IBM Plex Mono"}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .marquee .track{animation:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">
+      <span class="nose" aria-hidden="true">👃</span>
+      <span>BoomBigNose<small>plugins</small></span>
+    </a>
+    <nav class="nav-links">
+      <a class="lnk" href="index.html#plugin">ปลั๊กอิน</a>
+      <a class="lnk" href="index.html#features">จุดเด่น</a>
+      <a class="lnk" href="index.html#install">ติดตั้ง</a>
+      <a class="lnk active" href="news.html">ข่าว AI</a>
+      <a class="btn coral" href="https://github.com/Boom-Vitt/boombignose-plugins" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>ข่าว AI ล่าสุด ★ <b>ทุกวัน ทุกแบรนด์</b> ★ Anthropic · OpenAI · Google · NVIDIA ★ <b>ฉบับ BoomBigNose</b> ★ อ่านแล้วฉลาดขึ้นทันที ★ <b>ไม่แต่งข่าว ไม่ hallucinate</b> ★&nbsp;</span>
+    <span>ข่าว AI ล่าสุด ★ <b>ทุกวัน ทุกแบรนด์</b> ★ Anthropic · OpenAI · Google · NVIDIA ★ <b>ฉบับ BoomBigNose</b> ★ อ่านแล้วฉลาดขึ้นทันที ★ <b>ไม่แต่งข่าว ไม่ hallucinate</b> ★&nbsp;</span>
+  </div>
+</div>
+
+<!-- ===== PAGE HERO ===== -->
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">BoomBigNose Daily</span>
+    <h1>ข่าว <span class="hl">AI</span></h1>
+    <p class="lead">รวมข่าวพัฒนาการ AI ที่น่าสนใจ คัดมาให้แล้ว มีแหล่งอ้างอิงทุกชิ้น — เพราะเราไม่แต่งข่าว</p>
+  </div>
+</section>
+
+<!-- ===== NEWS: 5 มิถุนายน 2569 ===== -->
+<section class="news-section">
+  <div class="wrap">
+    <div class="date-bar reveal">
+      <span class="date-badge">5 มิถุนายน 2569</span>
+      <span class="date-count">5 ข่าวเด่น</span>
+    </div>
+
+    <div class="news-grid">
+
+      <!-- ข่าว 1: Anthropic IPO -->
+      <article class="news-card reveal">
+        <div class="card-meta">
+          <span class="badge cat-business">ธุรกิจ</span>
+          <span class="badge src">Fortune · 1 มิ.ย. 2569</span>
+        </div>
+        <h3>Anthropic ยื่นไฟล์ IPO ลับ — มูลค่าพุ่ง $9.65 แสนล้าน แซง OpenAI แล้ว</h3>
+        <p>Anthropic (เจ้าของ Claude) ยื่นเอกสาร S-1 แบบลับต่อ SEC เมื่อวันที่ 1 มิ.ย. หลังเพิ่งระดมทุน Series H ได้ $65,000 ล้าน ทำให้กลายเป็นบริษัท AI เอกชนที่มีมูลค่าสูงที่สุดในโลก แซงหน้า OpenAI ที่ $852,000 ล้านไปแล้ว ตั้งเป้าเข้าตลาดหลักทรัพย์ช่วงตุลาคม 2026 นี้ — ยังไม่กำหนดราคาหุ้นหรือ ticker แต่วงการจับตามองไว้แน่นอน</p>
+        <div class="card-footer">
+          <span class="card-date">1 มิถุนายน 2569</span>
+          <a class="btn coral sm" href="https://fortune.com/2026/06/01/anthropic-confidentially-files-ipo-965-billion-valuation/" target="_blank" rel="noopener">อ่านต้นฉบับ →</a>
+        </div>
+      </article>
+
+      <!-- ข่าว 2: NVIDIA Cosmos 3 -->
+      <article class="news-card reveal">
+        <div class="card-meta">
+          <span class="badge cat-robot">Robotics · Physical AI</span>
+          <span class="badge src">NVIDIA Newsroom · 1 มิ.ย. 2569</span>
+        </div>
+        <h3>NVIDIA Cosmos 3 — โมเดล AI "เข้าใจโลกจริง" แบบ Open ตัวแรกของโลก</h3>
+        <p>NVIDIA เปิดตัว Cosmos 3 ในงาน GTC Taipei เมื่อ 1 มิ.ย. เป็น "omnimodel" ตัวแรกที่รวมการมองเห็น การจำลองโลก และการสั่งการ robot ไว้ในโมเดลเดียว รองรับทั้งภาพ วิดีโอ เสียง และการเคลื่อนไหว — ใช้สถาปัตยกรรม Mixture-of-Transformers โดย NVIDIA ปล่อยให้ดาวน์โหลดบน Hugging Face แบบ open ทั้ง Nano (8B+8B) และ Super (32B+32B)</p>
+        <div class="card-footer">
+          <span class="card-date">1 มิถุนายน 2569</span>
+          <a class="btn coral sm" href="https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai" target="_blank" rel="noopener">อ่านต้นฉบับ →</a>
+        </div>
+      </article>
+
+      <!-- ข่าว 3: Microsoft MAI models -->
+      <article class="news-card reveal">
+        <div class="card-meta">
+          <span class="badge cat-model">โมเดล AI · Developer</span>
+          <span class="badge src">Neowin · 2 มิ.ย. 2569</span>
+        </div>
+        <h3>Microsoft ปล่อยโมเดล AI ของตัวเองครั้งแรก — ไม่ต้องพึ่ง OpenAI อีกแล้ว</h3>
+        <p>ในงาน Build 2026 เมื่อ 2 มิ.ย. Microsoft เปิดตัว MAI-Code-1-Flash (โมเดลเขียนโค้ด 5B parameters) และ MAI-Thinking-1 (โมเดล reasoning) — สองตัวนี้สร้างขึ้นโดย Microsoft เองล้วน ๆ ไม่พึ่งเทคโนโลยี OpenAI เลยสักบรรทัด MAI-Code-1-Flash กำลัง rollout ใน GitHub Copilot และทำคะแนน SWE-Bench Pro สูงกว่า Claude Haiku 4.5 ถึง 16 คะแนน เรียกว่ามาแรงเลย</p>
+        <div class="card-footer">
+          <span class="card-date">2 มิถุนายน 2569</span>
+          <a class="btn coral sm" href="https://www.neowin.net/news/microsoft-unveils-mai-thinking-1-reasoning-and-mai-code-1-coding-models/" target="_blank" rel="noopener">อ่านต้นฉบับ →</a>
+        </div>
+      </article>
+
+      <!-- ข่าว 4: MiniMax M3 -->
+      <article class="news-card reveal">
+        <div class="card-meta">
+          <span class="badge cat-open">Open-Source · โมเดล AI</span>
+          <span class="badge src">VentureBeat · 1 มิ.ย. 2569</span>
+        </div>
+        <h3>MiniMax M3 — Open-weight ที่แรงเทียบ GPT-5.5 แต่ราคาถูกกว่า 20 เท่า</h3>
+        <p>MiniMax จากจีนเปิดตัว M3 เมื่อ 1 มิ.ย. โมเดล open-weight ที่รองรับ context window ถึง 1 ล้าน token และ native multimodal ในตัวเดียว ใช้ compute ต่อ token น้อยกว่ารุ่นก่อนถึง 20 เท่า พร้อม SWE-Bench Pro 59% ซึ่งสูงกว่า GPT-5.5 — แต่ API ราคาเริ่มแค่ $0.30 ต่อล้าน token ใครอยากลองโมเดลพลังแรงราคาประหยัดต้องดูตัวนี้</p>
+        <div class="card-footer">
+          <span class="card-date">1 มิถุนายน 2569</span>
+          <a class="btn coral sm" href="https://venturebeat.com/technology/minimax-m3-debuts-eclipsing-gpt-5-5-and-gemini-3-1-pro-on-key-benchmark-performance-for-just-5-10-of-the-cost" target="_blank" rel="noopener">อ่านต้นฉบับ →</a>
+        </div>
+      </article>
+
+      <!-- ข่าว 5: AI Vaccine -->
+      <article class="news-card reveal">
+        <div class="card-meta">
+          <span class="badge cat-health">สุขภาพ · AI Research</span>
+          <span class="badge src">The National News · 4 มิ.ย. 2569</span>
+        </div>
+        <h3>วัคซีนออกแบบโดย AI ทั้งหมด — เริ่มทดลองในมนุษย์เป็นครั้งแรกในประวัติศาสตร์</h3>
+        <p>นักวิจัยจาก University of Cambridge เผยเมื่อ 4 มิ.ย. ว่า วัคซีนที่มีส่วนประกอบสำคัญออกแบบด้วย AI ล้วน ๆ เริ่มทดลองในมนุษย์แล้วเป็นครั้งแรก วัคซีนนี้เจาะกลุ่มเป้าหมายที่ไวรัสโคโรนาทั้งตระกูล ไม่ว่าจะกลายพันธุ์แค่ไหน หรือแม้แต่สายพันธุ์ในสัตว์ที่ยังไม่ระบาด ทีมวิจัยกำลังใช้ AI เดียวกันพัฒนาวัคซีนไข้หวัดใหญ่และอีโบล่าต่อด้วย — ถ้าสำเร็จนี่อาจเปลี่ยนวงการสาธารณสุขโลกเลย</p>
+        <div class="card-footer">
+          <span class="card-date">4 มิถุนายน 2569</span>
+          <a class="btn coral sm" href="https://www.thenationalnews.com/health/2026/06/04/ai-designed-vaccine-could-prevent-pandemics-before-they-begin/" target="_blank" rel="noopener">อ่านต้นฉบับ →</a>
+        </div>
+      </article>
+
+    </div><!-- /news-grid -->
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <span class="nose" aria-hidden="true">👃</span>
+          <span>BoomBigNose<small>plugins</small></span>
+        </a>
+        <p>เครื่องมือช่วยงานเอกสารและการตลาดสำหรับ Claude Code — กล้า สร้างสรรค์ และทำให้งานน่าเบื่อเสร็จไว</p>
+      </div>
+      <div class="foot-col">
+        <h5>ปลั๊กอิน</h5>
+        <a href="index.html#plugin">thai-quotation</a>
+        <a href="index.html#features">จุดเด่น</a>
+        <a href="index.html#install">วิธีติดตั้ง</a>
+        <a href="index.html#usage">วิธีใช้</a>
+      </div>
+      <div class="foot-col">
+        <h5>ลิงก์</h5>
+        <a href="news.html">ข่าว AI</a>
+        <a href="https://github.com/Boom-Vitt/boombignose-plugins" target="_blank" rel="noopener">GitHub Repo</a>
+        <a href="https://boombignose.org" target="_blank" rel="noopener">boombignose.org</a>
+        <a href="mailto:vittawat.soo@boombignose.org">vittawat.soo@boombignose.org</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 BoomBigNose · MIT License</span>
+      <span>made with 👃 + Claude Code</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold:0.1, rootMargin:"0px 0px -30px 0px" });
+  document.querySelectorAll(".reveal").forEach(function(el, i){
+    el.style.transitionDelay = (Math.min(i % 6, 5) * 70) + "ms";
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
