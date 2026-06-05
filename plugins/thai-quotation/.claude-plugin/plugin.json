@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "thai-quotation",
+  "displayName": "ใบเสนอราคา (Thai Quotation)",
+  "version": "0.1.0",
+  "description": "สร้างใบเสนอราคาภาษาไทยอย่างมืออาชีพ คำนวณ VAT 7% แปลงจำนวนเงินเป็นตัวอักษร (บาทถ้วน) และส่งออกเป็นไฟล์ HTML ที่สั่งพิมพ์เป็น PDF ได้",
+  "author": {
+    "name": "BoomBigNose",
+    "email": "vittawat.soo@boombignose.org",
+    "url": "https://boombignose.org"
+  },
+  "homepage": "https://boombignose.org",
+  "license": "MIT",
+  "keywords": [
+    "thai",
+    "quotation",
+    "ใบเสนอราคา",
+    "document",
+    "pdf",
+    "vat",
+    "invoice"
+  ]
+}

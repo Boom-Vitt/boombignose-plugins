@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ใบเสนอราคา QT-2569-001</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --accent:       #1a3a5c;
+      --accent-light: #e8eff6;
+      --accent-mid:   #2e5f8e;
+      --border:       #c5cfd8;
+      --border-light: #dde4ea;
+      --text:         #1a1a1a;
+      --text-muted:   #5a6472;
+      --bg:           #ffffff;
+      --cell-pad-v:   5px;
+      --cell-pad-h:   8px;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== BASE ===== */
+    body {
+      font-family: "Sarabun", "TH Sarabun New", Tahoma, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+      background: #f0f2f5;
+    }
+
+    /* ===== PAGE WRAPPER ===== */
+    .page {
+      position: relative;
+      overflow: hidden;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 10mm auto;
+      padding: 14mm 16mm 14mm 16mm;
+      background: var(--bg);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    }
+
+    /* ===== PRINT RULES ===== */
+    @page {
+      size: A4;
+      margin: 12mm 14mm;
+    }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body { background: var(--bg); }
+      .page {
+        width: 100%;
+        min-height: unset;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+    }
+
+    /* ===== HEADER ===== */
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .seller-block { flex: 1; }
+    .seller-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+    .seller-detail {
+      margin-top: 3px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .seller-detail a { color: var(--accent-mid); text-decoration: none; }
+    .doc-badge {
+      text-align: right;
+      flex-shrink: 0;
+      padding-left: 20px;
+    }
+    .doc-badge .doc-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .doc-badge .doc-subtitle {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== DOC META BOX ===== */
+    .doc-meta {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+    .doc-meta-table {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+    .doc-meta-table tr td {
+      padding: 4px 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .doc-meta-table tr:last-child td { border-bottom: none; }
+    .doc-meta-table td:first-child {
+      color: var(--text-muted);
+      white-space: nowrap;
+      padding-right: 6px;
+    }
+    .doc-meta-table td:last-child {
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    /* ===== BUYER SECTION ===== */
+    .buyer-section {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 9px 12px;
+      margin-bottom: 12px;
+      font-size: 12px;
+    }
+    .buyer-section .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .buyer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 16px;
+    }
+    .buyer-grid .field { display: flex; gap: 5px; }
+    .buyer-grid .field .lbl {
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .buyer-grid .field .val { font-weight: 500; }
+
+    /* ===== ITEMS TABLE ===== */
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+    .items-table thead tr {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .items-table thead th {
+      padding: var(--cell-pad-v) var(--cell-pad-h);
+      font-weight: 600;
+      font-size: 11.5px;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--accent-mid);
+    }
+    .items-table tbody tr {
+      border-bottom: 1px solid var(--border-light);
+    }
+    .items-table tbody tr:nth-child(even) {
+      background: #f7f9fb;
+    }
+    .items-table tbody td {
+      padding: var(--cell-pad-v) var(--cell-pad-h);
+      border: 1px solid var(--border-light);
+      vertical-align: top;
+    }
+
+    /* Column alignment per contract */
+    .col-no    { text-align: center; width: 6%; }
+    .col-desc  { text-align: left;   width: 42%; }
+    .col-qty   { text-align: center; width: 9%; }
+    .col-unit  { text-align: center; width: 9%; }
+    .col-price { text-align: right;  width: 17%; font-variant-numeric: tabular-nums; }
+    .col-amount{ text-align: right;  width: 17%; font-variant-numeric: tabular-nums; }
+
+    /* Avoid row breaking across pages */
+    .items-table tr { break-inside: avoid; page-break-inside: avoid; }
+
+    /* ===== SUMMARY BOX ===== */
+    .summary-area {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px;
+    }
+    .summary-table {
+      width: 200px;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .summary-table td {
+      padding: 4px 8px;
+      border: 1px solid var(--border-light);
+    }
+    .summary-table td:first-child { color: var(--text-muted); text-align: left; }
+    .summary-table td:last-child  { text-align: right; font-variant-numeric: tabular-nums; }
+    .summary-table tr.grand {
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .summary-table tr.grand td { border-color: var(--accent-mid); }
+
+    /* ===== AMOUNT IN WORDS ===== */
+    .amount-words {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 3px;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .amount-words .lbl {
+      color: var(--text-muted);
+      font-size: 11.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .amount-words .val { font-weight: 600; color: var(--accent); }
+
+    /* ===== TERMS ===== */
+    .terms-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 11.5px;
+    }
+    .terms-block {
+      border: 1px solid var(--border-light);
+      border-radius: 3px;
+      padding: 7px 9px;
+    }
+    .terms-block .t-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+    }
+    .terms-block .t-value { color: var(--text); line-height: 1.5; }
+
+    /* ===== SIGNATURES ===== */
+    .signature-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+    .sig-block { text-align: center; font-size: 11.5px; }
+    .sig-line {
+      border-bottom: 1px solid var(--text);
+      margin: 30px 10px 4px 10px;
+    }
+    .sig-name {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 12px;
+    }
+    .sig-role { color: var(--text-muted); font-size: 11px; }
+    .sig-date {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .sig-date span {
+      display: inline-block;
+      border-bottom: 1px solid var(--border);
+      min-width: 80px;
+    }
+
+    /* ===== FOOTER ===== */
+    .doc-footer {
+      margin-top: 8px;
+      border-top: 1px solid var(--border-light);
+      padding-top: 6px;
+      text-align: center;
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+
+    /* ===== DRAFT WATERMARK — ลบ element .draft-watermark ออกเมื่อเอกสารได้รับอนุมัติ ===== */
+    .draft-watermark {
+      position: absolute;
+      top: 46%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-27deg);
+      text-align: center;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .draft-watermark .dw-main {
+      display: block;
+      font-size: 96px;
+      font-weight: 800;
+      letter-spacing: 12px;
+      color: rgba(214, 40, 40, 0.13);
+      line-height: 1;
+    }
+    .draft-watermark .dw-sub {
+      display: block;
+      margin-top: 4px;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: rgba(214, 40, 40, 0.16);
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== DRAFT WATERMARK — ลบ <div class="draft-watermark"> นี้ออกเมื่อเอกสารได้รับอนุมัติแล้ว ===== -->
+  <div class="draft-watermark" aria-hidden="true">
+    <span class="dw-main">DRAFT</span>
+    <span class="dw-sub">ยังไม่ได้อนุมัติ</span>
+  </div>
+
+  <!-- ===== HEADER: SELLER INFO ===== -->
+  <header class="doc-header">
+    <div class="seller-block">
+      <div class="seller-name">BoomBigNose</div>
+      <div class="seller-detail">
+        [ที่อยู่บริษัท — โปรดระบุ]<br>
+        เลขประจำตัวผู้เสียภาษี: [เลขประจำตัวผู้เสียภาษี 13 หลัก — โปรดระบุ]<br>
+        โทร: [เบอร์โทร — โปรดระบุ] &nbsp;|&nbsp;
+        อีเมล: <a href="mailto:vittawat.soo@boombignose.org">vittawat.soo@boombignose.org</a> &nbsp;|&nbsp;
+        <a href="https://boombignose.org">https://boombignose.org</a>
+      </div>
+    </div>
+    <div class="doc-badge">
+      <div class="doc-title">ใบเสนอราคา</div>
+      <div class="doc-subtitle">QUOTATION</div>
+    </div>
+  </header>
+
+  <!-- ===== DOC META ===== -->
+  <div class="doc-meta">
+    <table class="doc-meta-table">
+      <tbody>
+        <tr>
+          <td>เลขที่เอกสาร</td>
+          <td>QT-2569-001</td>
+        </tr>
+        <tr>
+          <td>วันที่ออก</td>
+          <td>5 มิถุนายน 2569</td>
+        </tr>
+        <tr>
+          <td>ยืนราคาถึง</td>
+          <td>5 กรกฎาคม 2569</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== BUYER INFO ===== -->
+  <section class="buyer-section">
+    <div class="section-label">ข้อมูลผู้ซื้อ / เรียน</div>
+    <div class="buyer-grid">
+      <div class="field">
+        <span class="lbl">บริษัท/ชื่อ:</span>
+        <span class="val">บริษัท ตัวอย่าง จำกัด</span>
+      </div>
+      <div class="field">
+        <span class="lbl">ผู้ติดต่อ:</span>
+        <span class="val">คุณสมชาย ใจดี</span>
+      </div>
+      <div class="field">
+        <span class="lbl">ที่อยู่:</span>
+        <span class="val">123 ถนนสุขุมวิท กรุงเทพฯ 10110</span>
+      </div>
+      <div class="field">
+        <span class="lbl">เลขภาษี:</span>
+        <span class="val">0105560000000</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ITEMS TABLE ===== -->
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th class="col-no">ลำดับ</th>
+        <th class="col-desc">รายละเอียดสินค้า/บริการ</th>
+        <th class="col-qty">จำนวน</th>
+        <th class="col-unit">หน่วย</th>
+        <th class="col-price">ราคาต่อหน่วย (บาท)</th>
+        <th class="col-amount">จำนวนเงิน (บาท)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-no">1</td>
+        <td class="col-desc">บริการวางแผนการตลาดดิจิทัล</td>
+        <td class="col-qty">1</td>
+        <td class="col-unit">เดือน</td>
+        <td class="col-price">8,000.00</td>
+        <td class="col-amount">8,000.00</td>
+      </tr>
+      <tr>
+        <td class="col-no">2</td>
+        <td class="col-desc">ผลิตคอนเทนต์โซเชียลมีเดีย</td>
+        <td class="col-qty">10</td>
+        <td class="col-unit">ชิ้น</td>
+        <td class="col-price">200.00</td>
+        <td class="col-amount">2,000.00</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===== SUMMARY ===== -->
+  <div class="summary-area">
+    <table class="summary-table">
+      <tbody>
+        <tr>
+          <td>รวมเป็นเงิน</td>
+          <td>10,000.00</td>
+        </tr>
+        <tr>
+          <td>ส่วนลด</td>
+          <td>0.00</td>
+        </tr>
+        <tr>
+          <td>ราคาหลังหักส่วนลด</td>
+          <td>10,000.00</td>
+        </tr>
+        <tr>
+          <td>ภาษีมูลค่าเพิ่ม 7%</td>
+          <td>700.00</td>
+        </tr>
+        <tr class="grand">
+          <td>จำนวนเงินรวมทั้งสิ้น</td>
+          <td>10,700.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== AMOUNT IN WORDS ===== -->
+  <div class="amount-words">
+    <span class="lbl">จำนวนเงินเป็นตัวอักษร:</span>
+    <span class="val">หนึ่งหมื่นเจ็ดร้อยบาทถ้วน</span>
+  </div>
+
+  <!-- ===== TERMS ===== -->
+  <div class="terms-section">
+    <div class="terms-block">
+      <div class="t-label">เงื่อนไขการชำระเงิน</div>
+      <div class="t-value">ชำระภายใน 7 วันหลังได้รับใบแจ้งหนี้ / โอนเข้าบัญชีบริษัท</div>
+    </div>
+    <div class="terms-block">
+      <div class="t-label">กำหนดส่งมอบ</div>
+      <div class="t-value">ภายใน 14 วันหลังยืนยันสั่งซื้อ</div>
+    </div>
+    <div class="terms-block">
+      <div class="t-label">หมายเหตุ</div>
+      <div class="t-value">ราคานี้ยังไม่รวมค่าใช้จ่ายอื่นนอกเหนือจากที่ระบุ</div>
+    </div>
+  </div>
+
+  <!-- ===== SIGNATURES ===== -->
+  <div class="signature-section">
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <div class="sig-name">วิทวัส (BoomBigNose)</div>
+      <div class="sig-role">ผู้เสนอราคา</div>
+      <div class="sig-date">วันที่ <span></span></div>
+    </div>
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <div class="sig-name">&nbsp;</div>
+      <div class="sig-role">ผู้มีอำนาจอนุมัติ</div>
+      <div class="sig-date">วันที่ <span></span></div>
+    </div>
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <div class="sig-name">&nbsp;</div>
+      <div class="sig-role">ลูกค้าอนุมัติ</div>
+      <div class="sig-date">วันที่ <span></span></div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="doc-footer">
+    BoomBigNose &nbsp;|&nbsp; https://boombignose.org &nbsp;|&nbsp; vittawat.soo@boombignose.org
+  </footer>
+
+</div>
+</body>
+</html>

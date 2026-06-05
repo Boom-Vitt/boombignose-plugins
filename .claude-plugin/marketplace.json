@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "boombignose-plugins",
+  "description": "รวมปลั๊กอินเครื่องมือด้านเอกสารและการตลาดของ BoomBigNose",
+  "version": "0.1.0",
+  "owner": {
+    "name": "BoomBigNose",
+    "email": "vittawat.soo@boombignose.org",
+    "url": "https://boombignose.org"
+  },
+  "plugins": [
+    {
+      "name": "thai-quotation",
+      "displayName": "ใบเสนอราคา (Thai Quotation)",
+      "source": "./plugins/thai-quotation",
+      "description": "สร้างใบเสนอราคาภาษาไทยอย่างมืออาชีพ คำนวณ VAT 7% แปลงจำนวนเงินเป็นตัวอักษร (บาทถ้วน) และส่งออกเป็นไฟล์ HTML ที่สั่งพิมพ์เป็น PDF ได้",
+      "version": "0.1.0",
+      "author": {
+        "name": "BoomBigNose",
+        "email": "vittawat.soo@boombignose.org"
+      },
+      "homepage": "https://boombignose.org",
+      "license": "MIT",
+      "keywords": [
+        "thai",
+        "quotation",
+        "ใบเสนอราคา",
+        "document",
+        "pdf",
+        "vat",
+        "invoice",
+        "marketing"
+      ],
+      "category": "documents"
+    }
+  ]
+}
