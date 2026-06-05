@@ -32,10 +32,10 @@ Marketplace รวมปลั๊กอิน (plugins) สำหรับ **Cla
 
 ### 1) ติดตั้งจาก GitHub (สำหรับใช้งานจริง)
 
-แทนที่ `<owner>` ด้วยชื่อผู้ใช้/องค์กร GitHub ที่ใช้ push repo นี้ (repo ชื่อ `boombignose-plugins`)
+repo เผยแพร่แล้วที่ **https://github.com/Boom-Vitt/boombignose-plugins** — ติดตั้งได้ทันที:
 
 ```
-/plugin marketplace add <owner>/boombignose-plugins
+/plugin marketplace add Boom-Vitt/boombignose-plugins
 /plugin install thai-quotation@boombignose-plugins
 ```
 

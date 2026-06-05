@@ -73,10 +73,10 @@ gh repo create boombignose-plugins --public --source=. --remote=origin --push
 
 1. ไปที่ https://github.com/new สร้าง repo ชื่อ **`boombignose-plugins`**
    - **อย่า** เลือกสร้าง README / .gitignore / license อัตโนมัติ (เรามีในเครื่องแล้ว เพื่อเลี่ยง conflict)
-2. กลับมาที่ terminal แล้วเชื่อม remote + push (แทน `<owner>` ด้วยชื่อผู้ใช้/องค์กร GitHub ของคุณ):
+2. กลับมาที่ terminal แล้วเชื่อม remote + push:
 
 ```bash
-git remote add origin https://github.com/<owner>/boombignose-plugins.git
+git remote add origin https://github.com/Boom-Vitt/boombignose-plugins.git
 git branch -M main
 git push -u origin main
 ```
@@ -85,10 +85,10 @@ git push -u origin main
 
 ## ขั้นที่ 4 — ผู้ใช้คนอื่นติดตั้งได้แล้ว
 
-หลัง push สำเร็จ แชร์คำสั่งนี้ให้ผู้ใช้คนอื่น (แทน `<owner>` ด้วยชื่อ GitHub ของคุณ):
+หลัง push สำเร็จ แชร์คำสั่งนี้ให้ผู้ใช้คนอื่นติดตั้ง:
 
 ```
-/plugin marketplace add <owner>/boombignose-plugins
+/plugin marketplace add Boom-Vitt/boombignose-plugins
 /plugin install thai-quotation@boombignose-plugins
 ```
 
