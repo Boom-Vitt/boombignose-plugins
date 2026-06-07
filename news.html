@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ข่าว AI — BoomBigNose</title>
+<meta name="description" content="ข่าว AI ล่าสุดที่น่าสนใจ คัดมาให้แบบไม่ต้องวิ่งหาเอง — โดย BoomBigNose" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800;900&family=Sarabun:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👃</text></svg>" />
+<style>
+  :root{
+    --paper:#FFF6E9;
+    --paper-2:#FFEFD6;
+    --ink:#181410;
+    --coral:#FF5A36;
+    --blue:#2F50FF;
+    --yellow:#FFC93C;
+    --mint:#19C39B;
+    --pink:#FF7FB0;
+    --border:3px solid var(--ink);
+    --shadow:7px 7px 0 var(--ink);
+    --shadow-sm:4px 4px 0 var(--ink);
+    --shadow-lg:11px 11px 0 var(--ink);
+    --radius:18px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Sarabun",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:17px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3,h4,.display{font-family:"Kanit",sans-serif;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  ::selection{background:var(--coral);color:#fff}
+
+  /* ---------- top bar ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:100;
+    background:#111;
+    color:#fff;
+    border-bottom:3px solid #333;
+  }
+  .nav-in{display:flex;align-items:center;gap:18px;height:70px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:"Kanit";font-weight:800;font-size:20px}
+  .nose{
+    width:42px;height:42px;flex:none;display:grid;place-items:center;
+    background:#fff;border:3px solid #fff;border-radius:50%;box-shadow:4px 4px 0 #555;
+    transform:rotate(-6deg);transition:transform .25s ease;
+  }
+  .brand:hover .nose{transform:rotate(8deg) scale(1.06)}
+  .brand small{display:block;font-family:"IBM Plex Mono";font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#aaa;line-height:1}
+  .nav-links{margin-left:auto;display:flex;align-items:center;gap:26px}
+  .nav-links a.lnk{font-weight:600;text-decoration:none;font-size:15px;position:relative;color:#fff}
+  .nav-links a.lnk::after{content:"";position:absolute;left:0;bottom:-4px;height:3px;width:0;background:#fff;transition:width .2s}
+  .nav-links a.lnk:hover::after{width:100%}
+  .nav-links a.lnk.active{color:var(--yellow)}
+  .nav-links a.lnk.active::after{width:100%;background:var(--yellow)}
+  @media(max-width:760px){.nav-links a.lnk{display:none}}
+  header.nav .btn.coral{background:#fff;color:#111;border-color:#fff;box-shadow:4px 4px 0 #555}
+  header.nav .btn.coral:hover{box-shadow:6px 6px 0 #555}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:"Kanit";font-weight:700;font-size:15px;text-decoration:none;
+    padding:11px 20px;border:var(--border);border-radius:999px;
+    background:var(--ink);color:var(--paper);box-shadow:var(--shadow-sm);
+    cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.coral{background:var(--coral);color:#fff}
+  .btn.blue{background:var(--blue);color:#fff}
+  .btn.paper{background:var(--paper);color:var(--ink)}
+  .btn.sm{font-size:13px;padding:8px 16px}
+
+  /* ---------- page hero ---------- */
+  .page-hero{
+    background:var(--ink);color:var(--paper);
+    border-bottom:var(--border);
+    padding:56px 0 52px;
+    position:relative;overflow:hidden;
+  }
+  .page-hero::after{
+    content:"📡";
+    position:absolute;right:6%;top:50%;transform:translateY(-50%);
+    font-size:clamp(80px,12vw,160px);opacity:.08;
+    pointer-events:none;
+  }
+  .page-hero .eyebrow{
+    font-family:"IBM Plex Mono";font-weight:600;font-size:13px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--yellow);
+    display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;
+  }
+  .page-hero .eyebrow::before{content:"";width:30px;height:3px;background:var(--yellow)}
+  .page-hero h1{font-size:clamp(36px,6vw,68px);font-weight:900;margin-bottom:12px}
+  .page-hero h1 em{font-style:normal;color:var(--coral)}
+  .page-hero p{font-size:17px;color:#cdbfa9;max-width:52ch}
+
+  /* ---------- date section ---------- */
+  .date-section{padding:56px 0 8px}
+  .date-badge{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:"Kanit";font-weight:800;font-size:clamp(22px,3.5vw,32px);
+    background:var(--yellow);color:var(--ink);
+    border:var(--border);border-radius:999px;
+    padding:10px 26px;box-shadow:var(--shadow-sm);
+    margin-bottom:8px;
+  }
+  .date-badge .dot{width:10px;height:10px;border-radius:50%;background:var(--ink);animation:blink 1.6s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+  .date-section .sub{font-size:15px;color:#7a6b58;margin-top:6px;font-family:"IBM Plex Mono"}
+
+  /* ---------- news grid ---------- */
+  .news-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    margin-top:32px;
+    padding-bottom:60px;
+  }
+  @media(max-width:900px){.news-grid{grid-template-columns:1fr}}
+
+  .news-card{
+    background:#fff;
+    border:var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:28px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .news-card:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-lg)}
+  .news-card:nth-child(1){border-left:7px solid var(--coral)}
+  .news-card:nth-child(2){border-left:7px solid var(--blue)}
+  .news-card:nth-child(3){border-left:7px solid var(--mint)}
+  .news-card:nth-child(4){border-left:7px solid var(--yellow)}
+  .news-card:nth-child(5){border-left:7px solid var(--pink)}
+
+  .news-card-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .news-tag{
+    font-family:"IBM Plex Mono";font-size:11px;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;
+    background:var(--paper-2);border:2px solid var(--ink);
+    border-radius:999px;padding:4px 10px;
+  }
+  .news-source{
+    font-family:"IBM Plex Mono";font-size:11px;font-weight:600;
+    color:#7a6b58;
+  }
+  .news-card h2{
+    font-size:clamp(18px,2.2vw,22px);
+    font-weight:800;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .news-card p{
+    font-size:15.5px;
+    color:#4d4234;
+    line-height:1.7;
+    flex:1;
+  }
+  .news-card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .news-link{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:"Kanit";font-weight:700;font-size:13px;
+    background:var(--ink);color:var(--paper);
+    border:2px solid var(--ink);border-radius:999px;
+    padding:8px 18px;box-shadow:3px 3px 0 var(--ink);
+    text-decoration:none;
+    transition:transform .12s,box-shadow .12s;
+  }
+  .news-link:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+  .news-link:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+  .news-link svg{flex:none}
+
+  /* full-width featured card (first card) */
+  .news-card.featured{grid-column:1/-1}
+  @media(max-width:900px){.news-card.featured{grid-column:auto}}
+
+  /* ---------- divider ---------- */
+  .section-divider{
+    border:none;border-top:var(--border);
+    margin:0;
+  }
+
+  /* ---------- empty state ---------- */
+  .empty-day{
+    grid-column:1/-1;
+    text-align:center;
+    padding:48px 24px;
+    background:var(--paper-2);
+    border:var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+  }
+
+  /* ---------- footer ---------- */
+  footer{background:var(--paper);padding:54px 0 38px;border-top:var(--border)}
+  .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+  .foot-brand{max-width:30ch}
+  .foot-brand p{font-size:14px;color:#5c4f40;margin-top:12px}
+  .foot-col h5{font-family:"Kanit";font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+  .foot-col a{display:block;text-decoration:none;font-size:15px;margin-bottom:8px;color:#4d4234}
+  .foot-col a:hover{color:var(--coral)}
+  .foot-bot{margin-top:42px;padding-top:22px;border-top:var(--border);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#6f5f4a;font-family:"IBM Plex Mono"}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .date-badge .dot{animation:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">
+      <span class="nose" aria-hidden="true">👃</span>
+      <span>BoomBigNose<small>plugins</small></span>
+    </a>
+    <nav class="nav-links">
+      <a class="lnk" href="index.html#plugin">ปลั๊กอิน</a>
+      <a class="lnk active" href="news.html">ข่าว AI</a>
+      <a class="lnk" href="index.html#install">ติดตั้ง</a>
+      <a class="btn coral" href="https://github.com/Boom-Vitt/boombignose-plugins" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">curated by BoomBigNose</p>
+    <h1>ข่าว <em>AI</em></h1>
+    <p>อัปเดตวงการ AI ทุกวัน — คัดมาให้แล้ว ไม่ต้องวิ่งหาเอง อ่านเสร็จในไม่กี่นาที</p>
+  </div>
+</div>
+
+<main>
+
+<!-- ===== 7 มิถุนายน 2569 ===== -->
+<section class="date-section">
+  <div class="wrap">
+    <div class="date-badge reveal">
+      <span class="dot" aria-hidden="true"></span>
+      7 มิ.ย. 2569
+    </div>
+    <p class="date-sub sub">5 ข่าวเด่นประจำวัน · อัปเดตล่าสุด 7 มิถุนายน พ.ศ. 2569</p>
+
+    <div class="news-grid">
+
+      <!-- ข่าวที่ 1: Anthropic IPO -->
+      <article class="news-card featured reveal">
+        <div class="news-card-top">
+          <span class="news-tag">ธุรกิจ · Anthropic</span>
+          <span class="news-source">Fortune · Anthropic.com</span>
+        </div>
+        <h2>Anthropic ยื่นไฟล์ IPO เงียบ ๆ หลังปิดดีล Series H $65B — มูลค่าทะลุ $965B แซง OpenAI แล้ว</h2>
+        <p>
+          Anthropic เพิ่งปิดรอบระดมทุน Series H มูลค่า $65 พันล้านดอลลาร์ นำโดย Altimeter Capital, Sequoia Capital และ Dragoneer
+          ทำให้บริษัทมีมูลค่าถึง <strong>$965 พันล้านดอลลาร์</strong> — แซงหน้า OpenAI เป็นครั้งแรกในประวัติศาสตร์
+          พร้อมกันนั้นก็ยื่นไฟล์ S-1 กับ SEC แบบ confidential เพื่อเตรียม IPO ที่คาดว่าจะเกิดขึ้นช่วงปลายปี 2026
+          ถ้า Anthropic ออก IPO สำเร็จ revenue run rate ที่ $47B ต่อปีทำให้นี่คือหนึ่งในดีลเทคที่ใหญ่ที่สุดที่ Wall Street เคยเห็น
+        </p>
+        <div class="news-card-footer">
+          <a class="news-link" href="https://fortune.com/2026/06/01/anthropic-confidentially-files-ipo-965-billion-valuation/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            อ่านต้นฉบับ
+          </a>
+          <a class="news-link" style="background:var(--coral)" href="https://www.anthropic.com/news/series-h" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            Anthropic Official
+          </a>
+        </div>
+      </article>
+
+      <!-- ข่าวที่ 2: OpenAI Dreaming V3 -->
+      <article class="news-card reveal">
+        <div class="news-card-top">
+          <span class="news-tag">ผลิตภัณฑ์ · OpenAI</span>
+          <span class="news-source">OpenAI Blog</span>
+        </div>
+        <h2>ChatGPT จำดีขึ้นจริง ๆ แล้ว — OpenAI อัปเกรด Memory ด้วย "Dreaming V3"</h2>
+        <p>
+          OpenAI เปิดตัว <strong>Dreaming V3</strong> เมื่อ 4 มิ.ย. ระบบ memory ใหม่ที่ฉลาดขึ้นมาก
+          จำได้ว่าคุณไปสิงคโปร์เดือนก่อน แล้วอัปเดตตัวเองให้รู้ว่าตอนนี้คุณกลับมาแล้ว
+          แทนที่จะค้างข้อมูลเก่าแบบเดิม ๆ ระบบยังประหยัด compute ลงถึง 5 เท่า
+          ทำให้ OpenAI มีแผนขยาย memory ไปยัง Free tier ด้วยในเร็ว ๆ นี้
+        </p>
+        <div class="news-card-footer">
+          <a class="news-link" href="https://openai.com/index/chatgpt-memory-dreaming/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            อ่านต้นฉบับ
+          </a>
+        </div>
+      </article>
+
+      <!-- ข่าวที่ 3: Great American AI Act -->
+      <article class="news-card reveal">
+        <div class="news-card-top">
+          <span class="news-tag">นโยบาย · รัฐสภาสหรัฐ</span>
+          <span class="news-source">Roll Call · Obernolte.house.gov</span>
+        </div>
+        <h2>สหรัฐฯ เปิดร่าง "Great American AI Act" — กฎหมาย AI ระดับชาติฉบับแรก 269 หน้า</h2>
+        <p>
+          ส.ส. Jay Obernolte และ Lori Trahan เปิดตัวร่างกฎหมาย AI สองพรรค 269 หน้าเมื่อ 4 มิ.ย.
+          ครอบคลุมตั้งแต่การตรวจสอบความปลอดภัยบังคับทุก 6 เดือนสำหรับบริษัท AI รายใหญ่
+          ไปจนถึงการยับยั้งกฎหมายของรัฐต่าง ๆ เป็นเวลา 3 ปี
+          บริษัทที่ฝ่าฝืนอาจโดนปรับสูงถึง $1M ต่อวัน — ถ้าผ่านสำเร็จนี่จะเป็น framework AI ระดับชาติฉบับแรกของสหรัฐฯ
+        </p>
+        <div class="news-card-footer">
+          <a class="news-link" href="https://obernolte.house.gov/media/press-releases/obernolte-trahan-release-discussion-draft-great-american-ai-act" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            อ่านต้นฉบับ
+          </a>
+          <a class="news-link" style="background:var(--mint);color:var(--ink)" href="https://rollcall.com/2026/06/04/bipartisan-ai-draft-proposes-three-year-preemption-of-state-laws/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            Roll Call
+          </a>
+        </div>
+      </article>
+
+      <!-- ข่าวที่ 4: Microsoft MAI-Code-1-Flash -->
+      <article class="news-card reveal">
+        <div class="news-card-top">
+          <span class="news-tag">โมเดลใหม่ · Microsoft</span>
+          <span class="news-source">Microsoft AI · GitHub</span>
+        </div>
+        <h2>Microsoft ปล่อย MAI-Code-1-Flash — โมเดลโค้ดฝีมือตัวเองใน GitHub Copilot ไม่พึ่ง OpenAI</h2>
+        <p>
+          Microsoft เปิดตัว <strong>MAI-Code-1-Flash</strong> เมื่อ 2 มิ.ย. โมเดลโค้ดฝีมือ MS เองตัวแรก
+          ฝึกด้วยข้อมูลที่ได้รับอนุญาตอย่างถูกต้อง ขนาด 137B param แต่ใช้แค่ 5B param จริง ๆ ตอนรัน
+          ผลเทสเหนือกว่า Claude Haiku 4.5 ในหลาย benchmark ด้านโค้ด
+          พร้อมให้ใช้แล้วใน GitHub Copilot ทุก tier ตั้งแต่ Free ถึง Max
+        </p>
+        <div class="news-card-footer">
+          <a class="news-link" href="https://microsoft.ai/news/introducingmai-code-1-flash/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            อ่านต้นฉบับ
+          </a>
+          <a class="news-link" style="background:var(--blue)" href="https://github.blog/changelog/2026-06-02-mai-code-1-flash-is-now-available-for-github-copilot/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            GitHub Changelog
+          </a>
+        </div>
+      </article>
+
+      <!-- ข่าวที่ 5: Andrej Karpathy joins Anthropic -->
+      <article class="news-card reveal">
+        <div class="news-card-top">
+          <span class="news-tag">คนในวงการ · Anthropic</span>
+          <span class="news-source">TechCrunch · Axios</span>
+        </div>
+        <h2>Andrej Karpathy โผบินจาก OpenAI — ย้ายมาร่วมทีม Anthropic อย่างเป็นทางการสัปดาห์นี้</h2>
+        <p>
+          Andrej Karpathy หนึ่งในนักวิจัย AI ที่ได้รับการยอมรับมากที่สุดในโลก
+          อดีตผู้ร่วมก่อตั้ง OpenAI และ AI Director ของ Tesla
+          เริ่มงานที่ Anthropic สัปดาห์นี้อย่างเป็นทางการ
+          เขาจะนำทีมวิจัยใหม่ที่ใช้ Claude เพื่อเร่งพัฒนางาน pretraining โดยตรง
+          ดีลนี้ถือเป็น talent coup ครั้งใหญ่ที่สุดของ Anthropic ในปีนี้ — และเป็นสัญญาณที่ชัดเจนว่า Anthropic กำลังดึงดูดคนเก่งสุด ๆ ของวงการ
+        </p>
+        <div class="news-card-footer">
+          <a class="news-link" href="https://techcrunch.com/2026/05/19/openai-co-founder-andrej-karpathy-joins-anthropics-pre-training-team/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            TechCrunch
+          </a>
+          <a class="news-link" style="background:var(--paper-2);color:var(--ink)" href="https://www.axios.com/2026/05/19/anthropic-openai-karpathy-andrej-claude" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+            Axios
+          </a>
+        </div>
+      </article>
+
+    </div><!-- /.news-grid -->
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html" style="color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:12px">
+          <span class="nose" style="background:var(--paper-2);border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)" aria-hidden="true">👃</span>
+          <span style="font-family:'Kanit';font-weight:800;font-size:18px">BoomBigNose<small style="display:block;font-family:'IBM Plex Mono';font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7a6b58;line-height:1">plugins</small></span>
+        </a>
+        <p>ข่าว AI คัดแล้ว อ่านง่าย ไม่ขายฝัน — อัปเดตทุกวันโดย BoomBigNose</p>
+      </div>
+      <div class="foot-col">
+        <h5>หน้า</h5>
+        <a href="index.html">หน้าแรก</a>
+        <a href="news.html">ข่าว AI</a>
+        <a href="index.html#plugin">ปลั๊กอิน</a>
+        <a href="index.html#install">ติดตั้ง</a>
+      </div>
+      <div class="foot-col">
+        <h5>ลิงก์</h5>
+        <a href="https://github.com/Boom-Vitt/boombignose-plugins" target="_blank" rel="noopener">GitHub Repo</a>
+        <a href="https://boombignose.org" target="_blank" rel="noopener">boombignose.org</a>
+        <a href="mailto:vittawat.soo@boombignose.org">vittawat.soo@boombignose.org</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 BoomBigNose · MIT License</span>
+      <span>made with 👃 + Claude Code</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold:0.1, rootMargin:"0px 0px -30px 0px" });
+  document.querySelectorAll(".reveal").forEach(function(el, i){
+    el.style.transitionDelay = (Math.min(i % 5, 4) * 80) + "ms";
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
