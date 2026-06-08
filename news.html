@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ข่าว AI — BoomBigNose</title>
+<meta name="description" content="ข่าวและพัฒนาการวงการ AI ที่ BoomBigNose คัดมาให้ — เข้าใจง่าย มีแหล่งอ้างอิง อัปเดตทุกวัน" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800;900&family=Sarabun:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👃</text></svg>" />
+<style>
+  :root{
+    --paper:#FFF6E9;
+    --paper-2:#FFEFD6;
+    --ink:#181410;
+    --coral:#FF5A36;
+    --blue:#2F50FF;
+    --yellow:#FFC93C;
+    --mint:#19C39B;
+    --pink:#FF7FB0;
+    --border:3px solid var(--ink);
+    --shadow:7px 7px 0 var(--ink);
+    --shadow-sm:4px 4px 0 var(--ink);
+    --shadow-lg:11px 11px 0 var(--ink);
+    --radius:18px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Sarabun",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:17px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3,h4,.display{font-family:"Kanit",sans-serif;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  ::selection{background:var(--coral);color:#fff}
+
+  /* ---------- top bar ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:100;
+    background:#111;
+    color:#fff;
+    border-bottom:3px solid #333;
+  }
+  .nav-in{display:flex;align-items:center;gap:18px;height:70px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:"Kanit";font-weight:800;font-size:20px}
+  .nose{
+    width:42px;height:42px;flex:none;display:grid;place-items:center;
+    background:#fff;border:3px solid #fff;border-radius:50%;box-shadow:4px 4px 0 #555;
+    transform:rotate(-6deg);transition:transform .25s ease;
+  }
+  .brand:hover .nose{transform:rotate(8deg) scale(1.06)}
+  .brand small{display:block;font-family:"IBM Plex Mono";font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#aaa;line-height:1}
+  .nav-links{margin-left:auto;display:flex;align-items:center;gap:26px}
+  .nav-links a.lnk{font-weight:600;text-decoration:none;font-size:15px;color:#fff;position:relative}
+  .nav-links a.lnk::after{content:"";position:absolute;left:0;bottom:-4px;height:3px;width:0;background:#fff;transition:width .2s}
+  .nav-links a.lnk:hover::after{width:100%}
+  .nav-links a.lnk.active::after{width:100%}
+  @media(max-width:760px){.nav-links a.lnk:not(.show-mobile){display:none}}
+  header.nav .btn.coral{background:#fff;color:#111;border-color:#fff;box-shadow:4px 4px 0 #555}
+  header.nav .btn.coral:hover{box-shadow:6px 6px 0 #555}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:"Kanit";font-weight:700;font-size:15px;text-decoration:none;
+    padding:11px 20px;border:var(--border);border-radius:999px;
+    background:var(--ink);color:var(--paper);box-shadow:var(--shadow-sm);
+    cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.coral{background:var(--coral);color:#fff}
+  .btn.paper{background:var(--paper);color:var(--ink)}
+
+  /* ---------- page hero ---------- */
+  .page-hero{
+    background:var(--ink);color:#fff;
+    padding:56px 0 48px;border-bottom:var(--border);
+    position:relative;overflow:hidden;
+  }
+  .page-hero::after{
+    content:"📰";position:absolute;right:5%;top:50%;transform:translateY(-50%);
+    font-size:120px;opacity:.06;pointer-events:none;
+  }
+  .page-hero .eyebrow{font-family:"IBM Plex Mono";font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+  .page-hero .eyebrow::before{content:"";width:30px;height:3px;background:var(--yellow)}
+  .page-hero h1{font-size:clamp(36px,6vw,68px);font-weight:900;line-height:1}
+  .page-hero h1 .hl{color:var(--yellow)}
+  .page-hero p{font-size:18px;max-width:50ch;margin-top:14px;color:#cdbfa9}
+
+  /* ---------- day block ---------- */
+  .day-block{padding:64px 0;border-bottom:var(--border)}
+  .day-block:last-child{border-bottom:none}
+
+  .day-header{
+    display:flex;align-items:center;gap:16px;margin-bottom:36px;
+  }
+  .day-label{
+    font-family:"Kanit";font-weight:900;font-size:clamp(22px,3.5vw,34px);
+    background:var(--coral);color:#fff;
+    border:var(--border);border-radius:12px;
+    padding:8px 20px;box-shadow:var(--shadow-sm);
+    white-space:nowrap;
+  }
+  .day-count{font-family:"IBM Plex Mono";font-size:13px;color:#6f5f4a;border:2px solid #c9b89a;border-radius:999px;padding:4px 12px}
+
+  /* ---------- news grid ---------- */
+  .news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:24px;
+  }
+  @media(max-width:560px){.news-grid{grid-template-columns:1fr}}
+
+  /* ---------- news card ---------- */
+  .news-card{
+    background:#fff;border:var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    display:flex;flex-direction:column;
+    transition:transform .15s ease,box-shadow .15s ease;
+    text-decoration:none;color:var(--ink);
+  }
+  .news-card:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-lg)}
+  .news-card:active{transform:translate(2px,2px);box-shadow:var(--shadow-sm)}
+
+  .card-top{padding:20px 22px 0}
+  .card-cat{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:"IBM Plex Mono";font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    border:2px solid var(--ink);border-radius:999px;padding:4px 11px;margin-bottom:14px;
+  }
+  .card-cat.yellow{background:var(--yellow)}
+  .card-cat.mint{background:var(--mint)}
+  .card-cat.blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .card-cat.coral{background:var(--coral);color:#fff;border-color:var(--coral)}
+  .card-cat.pink{background:var(--pink)}
+  .card-cat.paper{background:var(--paper-2)}
+
+  .card-title{font-size:20px;font-weight:800;line-height:1.2;margin-bottom:10px}
+  .card-body{padding:0 22px 16px;font-size:15px;color:#4d4234;flex:1}
+  .card-footer{
+    padding:14px 22px;border-top:2px dashed #d9cab2;
+    display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  }
+  .card-source{font-family:"IBM Plex Mono";font-size:11px;color:#6f5f4a;display:flex;align-items:center;gap:6px}
+  .card-source::before{content:"📌"}
+  .read-more{
+    font-family:"Kanit";font-weight:700;font-size:13px;
+    color:var(--blue);text-decoration:none;
+    display:inline-flex;align-items:center;gap:5px;
+  }
+  .read-more::after{content:"→";transition:transform .15s}
+  .news-card:hover .read-more::after{transform:translateX(4px)}
+
+  /* ---------- empty state ---------- */
+  .empty-note{
+    background:var(--paper-2);border:var(--border);border-radius:var(--radius);
+    padding:32px;text-align:center;box-shadow:var(--shadow-sm);
+    font-size:16px;color:#5c4f40;
+  }
+  .empty-note strong{font-family:"Kanit";font-weight:800;font-size:20px;display:block;margin-bottom:8px}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--paper);padding:54px 0 38px;border-top:var(--border)}
+  .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+  .foot-brand{max-width:30ch}
+  .foot-brand p{font-size:14px;color:#5c4f40;margin-top:12px}
+  .foot-col h5{font-family:"Kanit";font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+  .foot-col a{display:block;text-decoration:none;font-size:15px;margin-bottom:8px;color:#4d4234}
+  .foot-col a:hover{color:var(--coral)}
+  .foot-bot{margin-top:42px;padding-top:22px;border-top:var(--border);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#6f5f4a;font-family:"IBM Plex Mono"}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .55s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">
+      <span class="nose" aria-hidden="true">👃</span>
+      <span>BoomBigNose<small>plugins</small></span>
+    </a>
+    <nav class="nav-links">
+      <a class="lnk" href="index.html#plugin">ปลั๊กอิน</a>
+      <a class="lnk" href="index.html#install">ติดตั้ง</a>
+      <a class="lnk active show-mobile" href="news.html">ข่าว AI</a>
+      <a class="btn coral" href="https://github.com/Boom-Vitt/boombignose-plugins" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">อัปเดตจาก BoomBigNose</div>
+    <h1>ข่าว <span class="hl">AI</span></h1>
+    <p>สรุปข่าวและพัฒนาการวงการ AI ที่น่าสนใจ — เขียนให้เข้าใจง่ายแบบคุยกับเพื่อน ทุกข่าวมีแหล่งอ้างอิงจริง</p>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<main>
+
+  <!-- ===== DAY: 8 มิ.ย. 2569 ===== -->
+  <section class="day-block">
+    <div class="wrap">
+      <div class="day-header reveal">
+        <div class="day-label">8 มิ.ย. 2569</div>
+        <div class="day-count">6 ข่าว</div>
+      </div>
+
+      <div class="news-grid">
+
+        <!-- card 1: Anthropic IPO -->
+        <a class="news-card reveal"
+           href="https://fortune.com/2026/06/01/anthropic-confidentially-files-ipo-965-billion-valuation/"
+           target="_blank" rel="noopener">
+          <div class="card-top">
+            <div class="card-cat yellow">💰 สตาร์ทอัพ</div>
+            <div class="card-title">Anthropic ยื่น IPO ลับ มูลค่าทะลุ $965 พันล้าน แซง OpenAI</div>
+          </div>
+          <div class="card-body">
+            Anthropic เพิ่งปิดรอบระดมทุน Series H ได้ $65 พันล้านดอลลาร์ ทำให้มูลค่าบริษัทพุ่งแตะ $965 พันล้าน — แซงหน้า OpenAI ที่มูลค่า $852 พันล้านเป็นครั้งแรก ยิ่งกว่านั้นยังยื่นเอกสาร IPO แบบลับต่อ ก.ล.ต. สหรัฐ เตรียมเข้าตลาดหุ้นในปีนี้ รายได้รายไตรมาสล่าสุดแตะ $10.9 พันล้านดอลลาร์ — โตสองเท่าจากไตรมาสก่อน
+          </div>
+          <div class="card-footer">
+            <span class="card-source">Fortune</span>
+            <span class="read-more">อ่านต่อ</span>
+          </div>
+        </a>
+
+        <!-- card 2: Claude 80% code -->
+        <a class="news-card reveal"
+           href="https://venturebeat.com/technology/anthropic-says-80-of-its-new-production-code-is-now-authored-by-claude-how-your-enterprise-can-keep-up"
+           target="_blank" rel="noopener">
+          <div class="card-top">
+            <div class="card-cat mint">🤖 AI ในองค์กร</div>
+            <div class="card-title">Claude เขียนโค้ดให้ Anthropic เองมากกว่า 80% แล้ว</div>
+          </div>
+          <div class="card-body">
+            Anthropic เปิดเผยว่าในเดือนพฤษภาคม 2569 โค้ดที่ merge เข้า production มากกว่า 80% ถูกเขียนโดย Claude — นั่นแปลว่า AI กำลัง "พัฒนาตัวเอง" ในระดับที่ไม่เคยมีมาก่อน ยิ่งไปกว่านั้น Anthropic ยังออก paper เรียกร้องให้โลกมีกลไก "ปุ่มหยุด" สำหรับ AI frontier development พร้อมกันด้วย
+          </div>
+          <div class="card-footer">
+            <span class="card-source">VentureBeat</span>
+            <span class="read-more">อ่านต่อ</span>
+          </div>
+        </a>
+
+        <!-- card 3: Gemini 3.5 Flash -->
+        <a class="news-card reveal"
+           href="https://techcrunch.com/2026/05/19/with-gemini-3-5-flash-google-bets-its-next-ai-wave-on-agents-not-chatbots/"
+           target="_blank" rel="noopener">
+          <div class="card-top">
+            <div class="card-cat blue">✨ โมเดลใหม่</div>
+            <div class="card-title">Google เดิมพัน Gemini 3.5 Flash ทำงานแทนคน ไม่ใช่แค่ตอบคำถาม</div>
+          </div>
+          <div class="card-body">
+            Google เปิดตัว Gemini 3.5 Flash ที่ Google I/O ปีนี้ โดยชูจุดขายเป็น "AI agent" ที่วางแผนและลงมือทำงานได้จริง — ไม่ใช่แค่แชตบอต ในการทดสอบภายใน มันสามารถสร้าง OS ได้ทั้งระบบโดยไม่ต้องให้คนสั่งทุกขั้น และตอนนี้ Gemini 3.5 Flash กลายเป็น model หลักใน Gemini App และ Google Search แล้ว
+          </div>
+          <div class="card-footer">
+            <span class="card-source">TechCrunch</span>
+            <span class="read-more">อ่านต่อ</span>
+          </div>
+        </a>
+
+        <!-- card 4: Great American AI Act -->
+        <a class="news-card reveal"
+           href="https://fedscoop.com/bipartisan-great-american-ai-act-draft-proposes-new-federal-ai-governance-framework/"
+           target="_blank" rel="noopener">
+          <div class="card-top">
+            <div class="card-cat coral">🏛️ กฎหมาย</div>
+            <div class="card-title">สหรัฐฯ เสนอ "กฎหมาย AI แห่งชาติ" 269 หน้า สองพรรคร่วมมือ</div>
+          </div>
+          <div class="card-body">
+            ส.ส. สองพรรค (รีพับลิกัน+เดโมแครต) เผยร่างกฎหมาย Great American Artificial Intelligence Act ยาว 269 หน้า เน้นให้บริษัท AI ขนาดใหญ่ประเมินความเสี่ยง "catastrophic" และรายงานเหตุการณ์ผิดปกติ แถมยังจะล็อกไม่ให้แต่ละรัฐออกกฎ AI ของตัวเองนาน 3 ปี — ทำให้สหภาพแรงงานและกลุ่มผู้บริโภคโวยดังมาก
+          </div>
+          <div class="card-footer">
+            <span class="card-source">FedScoop</span>
+            <span class="read-more">อ่านต่อ</span>
+          </div>
+        </a>
+
+        <!-- card 5: Uber WeRide Robotaxi Spain -->
+        <a class="news-card reveal"
+           href="https://cnevpost.com/2026/06/02/weride-uber-to-launch-first-commercial-robotaxi-service-spain/"
+           target="_blank" rel="noopener">
+          <div class="card-top">
+            <div class="card-cat pink">🚕 AI ในชีวิตจริง</div>
+            <div class="card-title">แท็กซี่ไร้คนขับขึ้นถนน Madrid แล้ว Uber จับมือ WeRide</div>
+          </div>
+          <div class="card-body">
+            WeRide และ Uber ประกาศเปิดบริการ robotaxi เชิงพาณิชย์แห่งแรกของสเปน ที่กรุงมาดริด เรียกรถผ่านแอป Uber ได้เลย เฟสแรกยังมีคนนั่งดูในรถ แต่เป้าหมายคือขยายเป็นรถไร้คนขับ 100% ในพื้นที่เมืองใหญ่ — นับเป็นก้าวกระโดดครั้งสำคัญที่ยุโรปเริ่มเปิดรับ autonomous vehicle จริงจัง
+          </div>
+          <div class="card-footer">
+            <span class="card-source">CnEVPost</span>
+            <span class="read-more">อ่านต่อ</span>
+          </div>
+        </a>
+
+        <!-- card 6: BYD humanoid -->
+        <a class="news-card reveal"
+           href="https://technode.com/2026/06/04/byd-is-developing-humanoid-robots-according-to-source/"
+           target="_blank" rel="noopener">
+          <div class="card-top">
+            <div class="card-cat paper">🦾 หุ่นยนต์</div>
+            <div class="card-title">BYD เจ้าแห่งรถ EV ประกาศชัด: กำลังสร้างหุ่นยนต์คล้ายมนุษย์ด้วย</div>
+          </div>
+          <div class="card-body">
+            BYD ยักษ์ใหญ่รถ EV จากจีน ยืนยันอย่างเป็นทางการว่ากำลังพัฒนา humanoid robot ควบคู่ไปกับธุรกิจรถยนต์ รองประธานบริษัทบอกว่าจุดแข็งของ BYD คือการผลิต + ซอฟต์แวร์ + ฮาร์ดแวร์ ที่มีครบอยู่แล้ว และอาจขายหุ่นยนต์ผ่านเครือข่ายดีลเลอร์รถยนต์เดิมได้เลย — เดิมพันครั้งใหม่ที่ไม่เล็กน้อยเลย
+          </div>
+          <div class="card-footer">
+            <span class="card-source">TechNode</span>
+            <span class="read-more">อ่านต่อ</span>
+          </div>
+        </a>
+
+      </div><!-- /.news-grid -->
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html" style="color:var(--ink)">
+          <span class="nose" aria-hidden="true">👃</span>
+          <span style="color:var(--ink)">BoomBigNose<small style="color:#888">plugins</small></span>
+        </a>
+        <p>เครื่องมือช่วยงานเอกสารและการตลาดสำหรับ Claude Code — กล้า สร้างสรรค์ และทำให้งานน่าเบื่อเสร็จไว</p>
+      </div>
+      <div class="foot-col">
+        <h5>ปลั๊กอิน</h5>
+        <a href="index.html#plugin">thai-quotation</a>
+        <a href="index.html#features">จุดเด่น</a>
+        <a href="index.html#install">วิธีติดตั้ง</a>
+        <a href="index.html#usage">วิธีใช้</a>
+      </div>
+      <div class="foot-col">
+        <h5>ลิงก์</h5>
+        <a href="news.html">ข่าว AI</a>
+        <a href="https://github.com/Boom-Vitt/boombignose-plugins" target="_blank" rel="noopener">GitHub Repo</a>
+        <a href="https://boombignose.org" target="_blank" rel="noopener">boombignose.org</a>
+        <a href="mailto:vittawat.soo@boombignose.org">vittawat.soo@boombignose.org</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 BoomBigNose · MIT License</span>
+      <span>made with 👃 + Claude Code</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold:0.1, rootMargin:"0px 0px -30px 0px" });
+  document.querySelectorAll(".reveal").forEach(function(el, i){
+    el.style.transitionDelay = (Math.min(i % 8, 7) * 55) + "ms";
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
