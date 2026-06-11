@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ข่าว AI — BoomBigNose</title>
+<meta name="description" content="ข่าวและพัฒนาการด้าน AI ที่น่าสนใจ รวบรวมโดย BoomBigNose — อัปเดตทุกวัน ภาษาไทย พูดตรง ไม่อ้อมค้อม" />
+<meta property="og:title" content="ข่าว AI — BoomBigNose" />
+<meta property="og:description" content="คัดข่าวสำคัญวงการ AI เล่าให้ฟังแบบเพื่อน ตรง เข้าใจง่าย มีแหล่งอ้างอิงจริงทุกชิ้น" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#FF5A36" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800;900&family=Sarabun:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👃</text></svg>" />
+<style>
+  :root{
+    --paper:#FFF6E9;
+    --paper-2:#FFEFD6;
+    --ink:#181410;
+    --coral:#FF5A36;
+    --blue:#2F50FF;
+    --yellow:#FFC93C;
+    --mint:#19C39B;
+    --pink:#FF7FB0;
+    --border:3px solid var(--ink);
+    --shadow:7px 7px 0 var(--ink);
+    --shadow-sm:4px 4px 0 var(--ink);
+    --shadow-lg:11px 11px 0 var(--ink);
+    --radius:18px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Sarabun",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:17px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3,h4{font-family:"Kanit",sans-serif;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  ::selection{background:var(--coral);color:#fff}
+
+  /* ---- nav ---- */
+  header.nav{
+    position:sticky;top:0;z-index:100;
+    background:#111;color:#fff;
+    border-bottom:3px solid #333;
+  }
+  .nav-in{display:flex;align-items:center;gap:18px;height:70px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:"Kanit";font-weight:800;font-size:20px;color:#fff}
+  .nose{
+    width:42px;height:42px;flex:none;display:grid;place-items:center;
+    background:#fff;border:3px solid #fff;border-radius:50%;box-shadow:4px 4px 0 #555;
+    transform:rotate(-6deg);transition:transform .25s ease;
+  }
+  .brand:hover .nose{transform:rotate(8deg) scale(1.06)}
+  .brand small{display:block;font-family:"IBM Plex Mono";font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#aaa;line-height:1}
+  .nav-links{margin-left:auto;display:flex;align-items:center;gap:26px}
+  .nav-links a.lnk{font-weight:600;text-decoration:none;font-size:15px;position:relative;color:#fff}
+  .nav-links a.lnk::after{content:"";position:absolute;left:0;bottom:-4px;height:3px;width:0;background:#fff;transition:width .2s}
+  .nav-links a.lnk:hover::after,.nav-links a.lnk.active::after{width:100%}
+  .nav-links a.lnk.active{color:var(--yellow)}
+  @media(max-width:760px){.nav-links a.lnk{display:none}}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:"Kanit";font-weight:700;font-size:15px;text-decoration:none;
+    padding:11px 20px;border:var(--border);border-radius:999px;
+    background:var(--ink);color:var(--paper);box-shadow:var(--shadow-sm);
+    cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.coral{background:var(--coral);color:#fff}
+  header.nav .btn.coral{background:#fff;color:#111;border-color:#fff;box-shadow:4px 4px 0 #555}
+  header.nav .btn.coral:hover{box-shadow:6px 6px 0 #555}
+
+  /* ---- page hero ---- */
+  .page-hero{
+    background:var(--ink);color:var(--paper);
+    border-bottom:var(--border);
+    padding:56px 0 52px;
+    position:relative;overflow:hidden;
+  }
+  .page-hero::after{
+    content:"AI";position:absolute;right:-20px;top:-30px;
+    font-family:"Kanit";font-weight:900;font-size:240px;color:rgba(255,255,255,.04);
+    pointer-events:none;line-height:1;
+  }
+  .page-hero .eyebrow{
+    font-family:"IBM Plex Mono";font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--yellow);display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;
+  }
+  .page-hero .eyebrow::before{content:"";width:30px;height:3px;background:var(--yellow)}
+  .page-hero h1{font-size:clamp(40px,6.2vw,72px);font-weight:900;margin-bottom:14px}
+  .page-hero h1 em{font-style:normal;color:var(--coral)}
+  .page-hero p{font-size:18px;color:#cdbfa9;max-width:50ch}
+
+  /* ---- date section ---- */
+  .date-section{padding:52px 0 40px}
+  .date-section + .date-section{border-top:var(--border);padding-top:52px}
+  .date-label{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"Kanit";font-weight:800;font-size:21px;
+    border:var(--border);border-radius:999px;
+    background:var(--yellow);padding:9px 24px;
+    box-shadow:var(--shadow-sm);margin-bottom:32px;
+  }
+  .date-label .dot{width:10px;height:10px;border-radius:50%;background:var(--ink);animation:blink 1.6s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  /* ---- news grid ---- */
+  .news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+    gap:24px;
+  }
+  @media(max-width:700px){.news-grid{grid-template-columns:1fr}}
+
+  /* ---- news card ---- */
+  .news-card{
+    background:#fff;border:var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    display:flex;flex-direction:column;
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .news-card:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-lg)}
+  .card-top{
+    padding:20px 22px 0;
+    display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;
+    margin-bottom:14px;
+  }
+  .badge{
+    font-family:"IBM Plex Mono";font-size:11px;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;
+    border:2px solid var(--ink);border-radius:6px;padding:3px 9px;
+  }
+  .badge.cat-security{background:var(--coral);color:#fff}
+  .badge.cat-model{background:var(--blue);color:#fff}
+  .badge.cat-enterprise{background:var(--mint);color:var(--ink)}
+  .badge.cat-hardware{background:var(--pink);color:var(--ink)}
+  .badge.cat-coding{background:var(--yellow);color:var(--ink)}
+  .badge.src{background:var(--paper-2);color:var(--ink)}
+  .card-body{padding:0 22px;flex:1}
+  .card-body h3{
+    font-size:19px;font-weight:700;margin-bottom:10px;line-height:1.3;
+  }
+  .card-body p{font-size:15px;color:#4d4234;line-height:1.65}
+  .card-foot{
+    padding:16px 22px;
+    border-top:2px dashed #d9cab2;margin-top:18px;
+    display:flex;align-items:center;justify-content:flex-end;
+  }
+  .read-more{
+    font-family:"Kanit";font-weight:700;font-size:14px;text-decoration:none;
+    display:inline-flex;align-items:center;gap:6px;
+    border:2px solid var(--ink);border-radius:999px;padding:7px 18px;
+    background:var(--ink);color:var(--paper);
+    box-shadow:3px 3px 0 var(--coral);
+    transition:transform .12s,box-shadow .12s;
+  }
+  .read-more:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--coral)}
+  .read-more:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--coral)}
+
+  /* ---- footer ---- */
+  footer{background:var(--paper);padding:54px 0 38px;border-top:var(--border)}
+  .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+  .foot-brand{max-width:30ch}
+  .foot-brand p{font-size:14px;color:#5c4f40;margin-top:12px}
+  .foot-col h5{font-family:"Kanit";font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+  .foot-col a{display:block;text-decoration:none;font-size:15px;margin-bottom:8px;color:#4d4234}
+  .foot-col a:hover{color:var(--coral)}
+  .foot-bot{margin-top:42px;padding-top:22px;border-top:var(--border);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#6f5f4a;font-family:"IBM Plex Mono"}
+
+  /* ---- reveal ---- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .date-label .dot{animation:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">
+      <span class="nose" aria-hidden="true">👃</span>
+      <span>BoomBigNose<small>plugins</small></span>
+    </a>
+    <nav class="nav-links">
+      <a class="lnk" href="index.html#plugin">ปลั๊กอิน</a>
+      <a class="lnk" href="index.html#features">จุดเด่น</a>
+      <a class="lnk" href="index.html#install">ติดตั้ง</a>
+      <a class="lnk active" href="news.html">ข่าว AI</a>
+      <a class="btn coral" href="https://github.com/Boom-Vitt/boombignose-plugins" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">BoomBigNose · ข่าว AI</div>
+    <h1>วงการ <em>AI</em><br/>เคลื่อนไหวทุกวัน</h1>
+    <p>เราคัดข่าวสำคัญมาเล่าให้ฟังแบบเพื่อน — ตรง เข้าใจง่าย มีแหล่งอ้างอิงจริงทุกชิ้น</p>
+  </div>
+</section>
+
+<!-- ===== MAIN ===== -->
+<main>
+<div class="wrap">
+
+  <!-- ======= 11 มิ.ย. 2569 ======= -->
+  <section class="date-section" id="2026-06-11">
+    <div class="date-label reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span>11 มิ.ย. 2569 — ล่าสุด</span>
+    </div>
+
+    <div class="news-grid">
+
+      <!-- 1. Anthropic Project Glasswing -->
+      <article class="news-card reveal">
+        <div class="card-top">
+          <span class="badge cat-security">ความปลอดภัย</span>
+          <span class="badge src">Anthropic · TechCrunch</span>
+        </div>
+        <div class="card-body">
+          <h3>Anthropic ปล่อย Claude Mythos ล้างช่องโหว่โครงสร้างพื้นฐาน 15 ประเทศ</h3>
+          <p>Project Glasswing ขยายการเข้าถึง Claude Mythos Preview ไปยัง 150+ องค์กรใน 15+ ประเทศ ครอบคลุมโครงสร้างพื้นฐานสำคัญ ทั้งพลังงาน น้ำ สาธารณสุข และโทรคมนาคม โมเดลตัวนี้เก่งหาช่องโหว่ซอฟต์แวร์ถึงขั้นที่ทีมพบปัญหาระดับวิกฤตรวมกันกว่า 10,000 รายการ รวมถึงในทุก OS และเบราว์เซอร์หลักด้วย</p>
+        </div>
+        <div class="card-foot">
+          <a class="read-more" href="https://techcrunch.com/2026/06/02/anthropic-scales-claude-mythos-to-critical-infrastructure-in-15-countries/" target="_blank" rel="noopener">อ่านต่อ →</a>
+        </div>
+      </article>
+
+      <!-- 2. Google Gemini 3.5 Pro -->
+      <article class="news-card reveal">
+        <div class="card-top">
+          <span class="badge cat-model">โมเดลใหม่</span>
+          <span class="badge src">TechTimes · Google</span>
+        </div>
+        <div class="card-body">
+          <h3>Gemini 3.5 Pro ใกล้ปล่อยแล้ว — context 2 ล้าน token พร้อม Deep Think</h3>
+          <p>Google เตรียมปล่อย Gemini 3.5 Pro ในเดือนมิถุนายนนี้ หลัง Sundar Pichai บอกที่ Google I/O ว่า "รออีกเดือน" โมเดลนี้มาพร้อม context window 2 ล้าน token และโหมด Deep Think สำหรับงานวิเคราะห์ซับซ้อน ส่วน Gemini 3.5 Flash ที่ออกไปก่อนก็กลายเป็นค่าเริ่มต้นใน Gemini app และ Google Search AI Mode แล้ว</p>
+        </div>
+        <div class="card-foot">
+          <a class="read-more" href="https://www.techtimes.com/articles/317919/20260606/google-gemini-35-pro-nears-june-launch-2-million-token-context-deep-think-reasoning.htm" target="_blank" rel="noopener">อ่านต่อ →</a>
+        </div>
+      </article>
+
+      <!-- 3. Microsoft MAI-Code-1-Flash -->
+      <article class="news-card reveal">
+        <div class="card-top">
+          <span class="badge cat-coding">AI โค้ด</span>
+          <span class="badge src">Microsoft · CNBC</span>
+        </div>
+        <div class="card-body">
+          <h3>Microsoft สร้างโมเดลโค้ดเองครั้งแรก — MAI-Code-1-Flash ไม่พึ่ง OpenAI</h3>
+          <p>ที่งาน Build 2026 Microsoft เปิดตัว MAI-Code-1-Flash โมเดลโค้ด 5 พันล้านพารามิเตอร์ที่พัฒนาขึ้นเอง 100% โดยไม่ผ่านข้อมูล OpenAI เทรนบน workflow จริงของ GitHub Copilot และจะเข้าไปอยู่ใน Copilot และ VS Code เพื่อแข่งกับ Claude Code และ Cursor โดยตรง</p>
+        </div>
+        <div class="card-foot">
+          <a class="read-more" href="https://www.cnbc.com/2026/06/01/microsoft-and-google-take-on-anthropic-and-openai-in-ai-coding-models.html" target="_blank" rel="noopener">อ่านต่อ →</a>
+        </div>
+      </article>
+
+      <!-- 4. Foxconn MoMClaw -->
+      <article class="news-card reveal">
+        <div class="card-top">
+          <span class="badge cat-hardware">โรงงาน · AI</span>
+          <span class="badge src">NVIDIA · Hon Hai</span>
+        </div>
+        <div class="card-body">
+          <h3>Foxconn เอา AI หลายร้อยตัวมาจัดการโรงงาน — ปัญหาเครื่องเสียลด 10%</h3>
+          <p>Foxconn เปิดตัว MoMClaw ระบบ multi-agent สำหรับโรงงานผลิต สร้างบน NVIDIA FOX Blueprint เชื่อม AI agents หลายร้อยตัวเข้ากับ sensors เครื่องจักร และข้อมูล ERP ผู้จัดการโรงงานสั่งงานได้ผ่านภาษาธรรมชาติ ผลลัพธ์ที่ได้: วิเคราะห์ต้นเหตุปัญหาเร็วขึ้น 80% และอัตราเครื่องเสียลดลง 10%</p>
+        </div>
+        <div class="card-foot">
+          <a class="read-more" href="https://blogs.nvidia.com/blog/factory-operations-fox-blueprint-ai-brain/" target="_blank" rel="noopener">อ่านต่อ →</a>
+        </div>
+      </article>
+
+      <!-- 5. JPMorgan AI reclassification -->
+      <article class="news-card reveal">
+        <div class="card-top">
+          <span class="badge cat-enterprise">ธุรกิจ</span>
+          <span class="badge src">Banking Exchange · SEC</span>
+        </div>
+        <div class="card-body">
+          <h3>JPMorgan ประกาศ AI คือ "โครงสร้างพื้นฐานหลัก" — ไม่ใช่แค่ทดลองอีกต่อไป</h3>
+          <p>JPMorgan Chase ปรับ AI budget ปี 2026 ออกจากหมวด "นวัตกรรมทดลอง" มาอยู่ข้างๆ ระบบชำระเงินและ cybersecurity ด้วยเงิน $2 พันล้านต่อปีจาก budget เทคโนโลยีรวม $19.8 พันล้าน Jamie Dimon บอกว่าลงทุนนี้คืนทุนแล้วด้วยการประหยัดค่าใช้จ่าย $2 พันล้านและเพิ่มประสิทธิภาพพนักงาน 10–11% — ถ้าธนาคารใหญ่ที่สุดในโลกถือว่า AI คือโครงสร้างพื้นฐาน คนอื่นคงตามมาไม่ช้า</p>
+        </div>
+        <div class="card-foot">
+          <a class="read-more" href="https://www.bankingexchange.com/news-feed/item/10520-jp-morgan-chase-reclassifies-ai-spending-as-core-infrastructure" target="_blank" rel="noopener">อ่านต่อ →</a>
+        </div>
+      </article>
+
+    </div><!-- /news-grid -->
+  </section>
+
+</div><!-- /wrap -->
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <span class="nose" aria-hidden="true">👃</span>
+          <span>BoomBigNose<small>plugins</small></span>
+        </a>
+        <p>เครื่องมือช่วยงานเอกสารและการตลาดสำหรับ Claude Code — กล้า สร้างสรรค์ และทำให้งานน่าเบื่อเสร็จไว</p>
+      </div>
+      <div class="foot-col">
+        <h5>ปลั๊กอิน</h5>
+        <a href="index.html#plugin">thai-quotation</a>
+        <a href="index.html#features">จุดเด่น</a>
+        <a href="index.html#install">วิธีติดตั้ง</a>
+        <a href="index.html#usage">วิธีใช้</a>
+      </div>
+      <div class="foot-col">
+        <h5>ลิงก์</h5>
+        <a href="news.html">ข่าว AI</a>
+        <a href="https://github.com/Boom-Vitt/boombignose-plugins" target="_blank" rel="noopener">GitHub Repo</a>
+        <a href="https://boombignose.org" target="_blank" rel="noopener">boombignose.org</a>
+        <a href="mailto:vittawat.soo@boombignose.org">vittawat.soo@boombignose.org</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 BoomBigNose · MIT License</span>
+      <span>made with 👃 + Claude Code</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold:0.1, rootMargin:"0px 0px -30px 0px" });
+  document.querySelectorAll(".reveal").forEach(function(el, i){
+    el.style.transitionDelay = (Math.min(i % 5, 4) * 70) + "ms";
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
