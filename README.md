@@ -1,3 +1,15 @@
+<!-- BBN:HEADER:START -->
+<div align="center">
+
+<img src=".github/brand/banner.svg" width="100%" alt="BoomBigNose Plugins — Claude Code plugin for Thai quotations: HTML/PDF, VAT 7%" />
+
+<a href="https://github.com/Boom-Vitt/boombignose-plugins/stargazers"><img src="https://img.shields.io/github/stars/Boom-Vitt/boombignose-plugins?style=flat-square&color=14b8a6&labelColor=0b1220" alt="stars" /></a>
+<a href="https://github.com/Boom-Vitt/boombignose-plugins/commits/main"><img src="https://img.shields.io/github/last-commit/Boom-Vitt/boombignose-plugins?style=flat-square&color=14b8a6&labelColor=0b1220" alt="last commit" /></a>
+<a href="https://github.com/Boom-Vitt"><img src="https://img.shields.io/badge/by-BoomBigNose-14b8a6?style=flat-square&labelColor=0b1220" alt="by BoomBigNose" /></a>
+
+</div>
+<!-- BBN:HEADER:END -->
+
 # boombignose-plugins
 
 Marketplace รวมปลั๊กอิน (plugins) สำหรับ **Claude Code** ของ **BoomBigNose** — เครื่องมือช่วยงานด้านเอกสารและการตลาด เพื่อให้ทีมทำงานได้เร็วขึ้นและได้ผลลัพธ์ที่สอดคล้องกับแบรนด์
@@ -98,3 +110,15 @@ boombignose-marketplace/
 ## License
 
 MIT
+
+<!-- BBN:FOOTER:START -->
+---
+
+<div align="center">
+
+**สร้างโดย [BoomBigNose](https://github.com/Boom-Vitt)** · [Kruoop.com](https://kruoop.com) แหล่งเรียน AI + คอมมูนิตี้ · [Seeneo.ai](https://seeneo.ai) · [YouTube 220K](https://www.youtube.com/@BoomBigNose)
+
+<sub>ถ้าโปรเจกต์นี้มีประโยชน์ กด ⭐ ให้กำลังใจกันได้เลย</sub>
+
+</div>
+<!-- BBN:FOOTER:END -->
